@@ -13,8 +13,9 @@ It's simplified sticky-notes board. Functionality:
 3. Change note's position
 4. Change text inside note
 5. Change note's color
-6. Move note to top layer
-7. Delete note by dragging off white board
+7. Move note to top layer
+8. Delete note by dragging off white board
+9. Saving state in localstorage
 
 ## Run project
 
