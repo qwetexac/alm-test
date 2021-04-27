@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/static/js/main.335a38b3.chunk.js",
-    "main.js.map": "/static/js/main.335a38b3.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.bb3f7068.js",
-    "runtime-main.js.map": "/static/js/runtime-main.bb3f7068.js.map",
-    "static/js/2.277ca0ac.chunk.js": "/static/js/2.277ca0ac.chunk.js",
-    "static/js/2.277ca0ac.chunk.js.map": "/static/js/2.277ca0ac.chunk.js.map",
-    "index.html": "/index.html",
-    "static/js/2.277ca0ac.chunk.js.LICENSE.txt": "/static/js/2.277ca0ac.chunk.js.LICENSE.txt"
+    "main.js": "/alm-test/static/js/main.335a38b3.chunk.js",
+    "main.js.map": "/alm-test/static/js/main.335a38b3.chunk.js.map",
+    "runtime-main.js": "/alm-test/static/js/runtime-main.f698ecf5.js",
+    "runtime-main.js.map": "/alm-test/static/js/runtime-main.f698ecf5.js.map",
+    "static/js/2.e3d3f91d.chunk.js": "/alm-test/static/js/2.e3d3f91d.chunk.js",
+    "static/js/2.e3d3f91d.chunk.js.map": "/alm-test/static/js/2.e3d3f91d.chunk.js.map",
+    "index.html": "/alm-test/index.html",
+    "static/js/2.e3d3f91d.chunk.js.LICENSE.txt": "/alm-test/static/js/2.e3d3f91d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.bb3f7068.js",
-    "static/js/2.277ca0ac.chunk.js",
+    "static/js/runtime-main.f698ecf5.js",
+    "static/js/2.e3d3f91d.chunk.js",
     "static/js/main.335a38b3.chunk.js"
   ]
 }
