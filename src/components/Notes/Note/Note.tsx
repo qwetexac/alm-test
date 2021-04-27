@@ -86,7 +86,7 @@ const Note = memo<Props>(
 
         onDragStart(e);
       },
-      [onHover, onDragStart]
+      [onHover, props.id, onDragStart, onResizeStart]
     );
 
     const handleChangeColor = useCallback((color) => {

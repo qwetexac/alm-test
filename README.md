@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Demo
+https://qwetexac.github.io/alm-test/
+
 ## Description
 
 It's simplified sticky-notes board. Functionality:
