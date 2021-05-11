@@ -2,7 +2,6 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Note from './Note';
-import AddNoteButton from './AddNoteButton';
 import NewNote from './NewNote';
 import { NODE_LIST } from './contants';
 import { useStore } from 'hooks';
@@ -53,14 +52,16 @@ const Notes = memo(() => {
     setNotes(nextNotes);
   }, []);
 
-  const handleClickButton = useCallback(() => {
+  const handleCreateNote = useCallback((properties: Partial<INote>) => {
     highestIndex.current += 1;
     const nextNote = {
       ...newNote,
+      ...properties,
       id: performance.now(),
       zIndex: highestIndex.current,
     };
     setNotes([...notes.current, nextNote]);
+    setNewNote(null);
     setActiveNote(nextNote.id);
   }, []);
 
@@ -70,15 +71,14 @@ const Notes = memo(() => {
   }, []);
   
   const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.target === e.currentTarget) return;
+    if (e.target !== e.currentTarget) return;
     setNewNote({ x: e.pageX, y: e.pageY })
   }, [])
 
   return (
     <Wrapper id={NODE_LIST} onMouseDownCapture={handleMouseDown}>
-      <AddNoteButton onClick={handleClickButton} />
       {newNoteState !== null && (
-        <NewNote {...newNoteState} onSave={handleSave} />
+        <NewNote {...newNoteState} onCreate={handleCreateNote} />
       )}
       {notes.current.map((note) => (
         <Note
