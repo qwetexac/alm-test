@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { INote } from '../types';
 
-const Editor = styled.div`
+const Editor = styled.textarea`
   position: relative;
   display: inline-block;
   padding: 20px;
@@ -11,6 +11,9 @@ const Editor = styled.div`
   outline: none;
   max-width: 100%;
   word-break: break-all;
+  resize: none;
+  height: 100%;
+  background: none;
 
   &:empty:before {
     content: 'Place some text here';
@@ -25,38 +28,17 @@ type Props = {
 };
 
 const NoteTextEditor = memo<Props>(({ text, containerMinSize, onSave }) => {
-  const [active, setActive] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  const handleClick = useCallback(() => {
-    setActive(true);
-
-    document.addEventListener(
-      'mousedown',
-      (e) => {
-        if (e.currentTarget !== ref.current) {
-          setActive(false);
-          onSave({ text: ref.current?.innerHTML || '' });
-        }
-      },
-      { once: true }
-    );
-  }, [onSave]);
-
-  useEffect(() => {
-    active && ref.current?.focus();
-  }, [active]);
+  const handleChange = useCallback((e: React.SyntheticEvent<HTMLTextAreaElement, Event>) => {
+    onSave({ text: (e.target as HTMLTextAreaElement).value });
+  }, [onSave])
 
   return (
     <Editor
-      ref={ref}
-      onClick={handleClick}
-      contentEditable={active}
       suppressContentEditableWarning
       style={{ fontSize: containerMinSize / 5 }}
-    >
-      {text}
-    </Editor>
+      onChange={handleChange}
+      value={text}
+    />
   );
 });
 
