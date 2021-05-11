@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Note from './Note';
 import AddNoteButton from './AddNoteButton';
+import NewNote from './NewNote';
 import { NODE_LIST } from './contants';
 import { useStore } from 'hooks';
 import { INote } from './types';
@@ -25,6 +26,7 @@ const newNote: INote = {
 
 const Notes = memo(() => {
   const [activeNote, setActiveNote] = useState<null | number>(null);
+  const [newNoteState, setNewNote] = useState<null | { x: number; y: number }>(null);
   const [notesFromStore, setNotes] = useStore<INote[]>('notes', []);
   const notes = useRef<INote[]>(notesFromStore);
   const highestIndex = useRef<number>(1);
@@ -66,10 +68,18 @@ const Notes = memo(() => {
     highestIndex.current += 1;
     handleSave(id, { zIndex: highestIndex.current });
   }, []);
+  
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.target === e.currentTarget) return;
+    setNewNote({ x: e.pageX, y: e.pageY })
+  }, [])
 
   return (
-    <Wrapper id={NODE_LIST}>
+    <Wrapper id={NODE_LIST} onMouseDownCapture={handleMouseDown}>
       <AddNoteButton onClick={handleClickButton} />
+      {newNoteState !== null && (
+        <NewNote {...newNoteState} onSave={handleSave} />
+      )}
       {notes.current.map((note) => (
         <Note
           key={note.id}
